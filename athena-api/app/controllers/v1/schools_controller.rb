@@ -29,6 +29,14 @@ class V1::SchoolsController < ApplicationController
     json_response(@school, :destroyed)
   end
 
+  def import
+    unless params[:file].nil?
+      result = StudentUploadService.new(file: params[:file], school_id: School.first).upload_records
+      response = { path: v1_school_users_path(params[:id]), notice: result[:value] }
+      json_response(response, :created)
+    end
+  end
+
   private
 
   def school_params
