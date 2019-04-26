@@ -1,36 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
 import { BrowserRouter, Route } from 'react-router-dom';
-import AbsenteeForm from './components/absenteeForm';
+import Absentee from './containers/absentee-container';
 import Header from './components/header';
 function App() {
   return (
-
     <BrowserRouter>
-      <div className="container wrapper">
+      <div className="container">
         <Header>
-          <Route path="/" component={AbsenteeForm} />
+          <Route path="/" component={Absentee} />
         </Header>
       </div>
     </BrowserRouter>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
   );
 }
 

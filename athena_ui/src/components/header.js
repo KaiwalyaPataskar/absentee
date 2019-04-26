@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button, Label, FormGroup, Input, Row, Col } from 'reactstrap';
+import { Button, Nav, Navbar, NavItem, NavLink } from 'reactstrap';
 
 class Header extends React.Component {
   constructor(props) {
@@ -8,14 +8,24 @@ class Header extends React.Component {
   render() {
     return (
       <>
-        <nav color="light" className="navbar navbar-expand-md App-header">
-          <label>User From</label>
+        <Navbar color="light" light expand="md">
+          <Nav navbar>
+            <NavItem>
+              <NavLink href="/components/">Absentee</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/components/">Students</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="https://github.com/reactstrap/reactstrap">Schools</NavLink>
+            </NavItem>
+          </Nav>
           <div className="buttonWrapper">
-            <Button className="btn">Upload</Button>
+          <Button className="btn" href="/Inventory/">Upload Student Information</Button>
+            {/* <Button className="btn">Upload Student Information</Button> */}
           </div>
-          
-        </nav>
-          {this.props.children}
+        </Navbar>
+        {this.props.children}
       </>
     )
   }
