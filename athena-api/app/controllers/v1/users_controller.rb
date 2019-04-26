@@ -4,7 +4,8 @@ class V1::UsersController < ApplicationController
   
   def index
     @users = User.where(school_id: params[:school_id])
-    json_response(@users)
+    students = @users.joins(:user_info).select("users.name, user_infos.roll_number")
+    json_response(students)
   end
 
   def create
