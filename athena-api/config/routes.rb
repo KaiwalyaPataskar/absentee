@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   		member do
   			post :import
   			get :get_data
+  			post :get_students
   		end
   		resources :users
   		resources :classes do

@@ -44,6 +44,12 @@ class V1::SchoolsController < ApplicationController
   	json_response(response, :created)
   end
 
+  def get_students
+  	students = User.where(school_id: params[:id])
+  	students = students.joins(:user_info).where("user_infos.division_id": 1, "user_infos.class_info_id": 1).select("users.name, user_infos.roll_number")
+  	json_response(students, :created)
+  end
+
   private
 
   def school_params
