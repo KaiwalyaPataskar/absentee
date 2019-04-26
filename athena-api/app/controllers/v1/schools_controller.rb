@@ -3,7 +3,7 @@ class V1::SchoolsController < ApplicationController
   
   def index
     @schools = School.all
-    json_response(@users)
+    json_response(@schools)
   end
 
   # POST v1/schools
