@@ -2,7 +2,7 @@ class V1::ClassesController < ApplicationController
   before_action :set_class_info, only: [:show, :update, :destroy]
   
   def index
-    @class_info = ClassInfo.all
+    @class_info = ClassInfo.where(school_id: params[:school_id])
     json_response(@class_info)
   end
 
@@ -33,10 +33,10 @@ class V1::ClassesController < ApplicationController
 
   def class_info_params
     # whitelist params
-    params.permit(:name)
+    params.permit(:name, :school_id)
   end
 
   def set_class_info
-    @class_info = ClassInfo.find(params[:id])
+    @class_info = ClassInfo.where(id: params[:id], school_id: params[:school_id])
   end
 end

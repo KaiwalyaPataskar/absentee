@@ -2,7 +2,7 @@ class V1::DivisionsController < ApplicationController
   before_action :set_division, only: [:show, :update, :destroy]
   
   def index
-    @division = Division.all
+    @division = Division.where(school_id: params[:school_id], class_id: params[:class_id])
     json_response(@division)
   end
 
@@ -33,10 +33,10 @@ class V1::DivisionsController < ApplicationController
 
   def division_params
     # whitelist params
-    params.permit(:name)
+    params.permit(:name, :school_id, :class_id)
   end
 
   def set_division
-    @division = Division.find(params[:id])
+    @division = Division.where(id: params[:id], class_id: params[:class_id])
   end
 end

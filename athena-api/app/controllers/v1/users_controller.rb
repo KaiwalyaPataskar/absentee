@@ -3,7 +3,7 @@ class V1::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
   
   def index
-    @users = User.all
+    @users = User.where(school_id: params[:school_id])
     json_response(@users)
   end
 
@@ -34,10 +34,10 @@ class V1::UsersController < ApplicationController
 
   def user_params
     # whitelist params
-    params.permit(:name, :registration_number, :mobile_number, :user_type)
+    params.permit(:name, :registration_number, :mobile_number, :user_type, :school_id)
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.where(id: params[:id], school_id: params[:school_id]).first
   end
 end
