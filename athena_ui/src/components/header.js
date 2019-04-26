@@ -2,9 +2,6 @@ import React from 'react';
 import { Button, Nav, Navbar, NavItem, NavLink } from 'reactstrap';
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <>

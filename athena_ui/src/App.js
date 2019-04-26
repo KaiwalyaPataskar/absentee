@@ -1,18 +1,20 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Absentee from './containers/absentee-container';
+import RootLayout from './components/rootLayout';
 import Header from './components/header';
-function App() {
-  return (
-    <BrowserRouter>
-      <div className="container">
-        <Header>
-          <Route path="/" component={Absentee} />
-        </Header>
-      </div>
-    </BrowserRouter>
-  );
-}
 
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <div className="container">
+          <Header>
+            <Route path="/" component={RootLayout} />
+          </Header>
+        </div>
+      </BrowserRouter>
+    );
+  }
+}
 export default App;
