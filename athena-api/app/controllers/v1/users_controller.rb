@@ -1,41 +1,43 @@
 class V1::UsersController < ApplicationController
 
+  before_action :set_user, only: [:show, :update, :destroy]
+  
   def index
     @users = User.all
     json_response(@users)
   end
 
-  # POST /todos
+  # POST v1/users
   def create
-    @todo = Todo.create!(todo_params)
-    json_response(@todo, :created)
+    @user = User.create!(user_params)
+    json_response(@user, :created)
   end
 
-  # GET /todos/:id
+  # GET v1/users/:id
   def show
-    json_response(@todo)
+    json_response(@user)
   end
 
-  # PUT /todos/:id
+  # PUT v1/users/:id
   def update
-    @todo.update(todo_params)
-    head :no_content
+    @user.update(user_params)
+    json_response(@user, :updated)
   end
 
-  # DELETE /todos/:id
+  # DELETE v1/users/:id
   def destroy
-    @todo.destroy
-    head :no_content
+    @user.destroy
+    json_response(@user, :destroyed)
   end
 
   private
 
-  def todo_params
+  def user_params
     # whitelist params
-    params.permit(:title, :created_by)
+    params.permit(:name, :registration_number, :mobile_number, :user_type)
   end
 
-  def set_todo
-    @todo = Todo.find(params[:id])
+  def set_user
+    @user = User.find(params[:id])
   end
 end
