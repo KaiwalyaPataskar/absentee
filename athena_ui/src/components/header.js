@@ -8,13 +8,16 @@ class Header extends React.Component {
         <Navbar color="light" light expand="md">
           <Nav navbar>
             <NavItem>
-              <NavLink href="/components/">Absentee</NavLink>
+              <NavLink href="/">Absentee</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/components/">Students</NavLink>
+              <NavLink href="/studentListing">Students</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">Schools</NavLink>
+              <NavLink href="/updateSchool">Schools</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/classListing">Class</NavLink>
             </NavItem>
           </Nav>
           <div className="buttonWrapper">

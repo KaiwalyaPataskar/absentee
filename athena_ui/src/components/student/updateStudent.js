@@ -1,99 +1,97 @@
-import React, { Component } from 'react';
-import { Label, Input, Col, FormGroup, Form, Row} from 'reactstrap'
+import React from 'react';
+import { Card, CardHeader, CardBody, Form, FormGroup, Row, Col, Label, Input, Button} from 'reactstrap';
+import Select from 'react-select';
 
-class UpdateStudent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      fields: {
-      
-      },
-      errors: {
-      
-      },
-      statusCode: "",
-    }
-  };
 
-  // onHandleChangeFields = (e) => {
-  //   let field = this.state.fields;
-  //   field[e.target.name] = e.target.value;
-  //   this.setState({
-  //     field
-  //   });
-  // }
-
-  // onBlurProdName = (e) => {
-  //   let { fields } = this.state;
-  //   let errors = {};
-
-  //   if (fields["prodName"].length < 10) {
-  //     errors["prodName"] = "*Product length must be greater than 10 characters";
-  //     this.setState({ errors });
-  //     return false;
-  //   }
-   
-  //   return true;
-  // }
-
-  // validateForm = () => {
-  //   let { fields } = this.state;
-  //   let errors = {};
-  //   let formIsValid = true;
-
-  //   //required field validation
-  //   if (!fields["prodName"]) {
-  //     formIsValid = false;
-  //     errors["prodName"] = "*Please enter Product name.";
-  //   }
-
-  //   if (!fields["prodQuantity"]) {
-  //     formIsValid = false;
-  //     errors["prodQuantity"] = "*Please enter correct opening time.";
-  //   }
-
-  //   if (!fields["uploadImages"]) {
-  //     formIsValid = false;
-  //     errors["uploadImages"] = "*Please upload atleast one image.";
-  //   }
-
-  //   if (!fields["prodPoints"]) {
-  //     formIsValid = false;
-  //     errors["prodPoints"] = "*Please enter correct Points.";
-  //   }
-  //   this.setState({ errors });
-  //   return formIsValid;
-  // }
-
-  // onHandleSubmit = () => {
-  //   let isValidForm = this.validateForm();
-  //   if (isValidForm) {
-  //     this.props.handleSubmit(this.state);
-  //   }
-  // }
-
-  render() {
-    return (
-      <div className="col-xs-10">
-        <h4>Update Student Info</h4>
-        <Form>
-        <Row form>
-          <Col md={6}>
+const UpdateStudent = (props) => {
+  return (
+    <div>
+      <Card className="mt-5 ml-5 mr-5 wrapper">
+        <CardHeader>Student Crud</CardHeader>
+        <CardBody>
+          <Form className='userForm'>
             <FormGroup>
-              <Label for="studentName">Name</Label>
-              <Input type="text" name="name" id="name" placeholder="with a placeholder" />
+              <Row className="mb-4">
+                <Col sm='4'>
+                  <Label>Class: </Label>
+                </Col>
+                <Col sm='4'>
+                  <Select
+                    name='class'
+                    options={props.classOptions}
+                    placeholder='Select Class'
+                    onChange={props.onClassSelect}
+                  />
+                </Col>
+              </Row>
+              <Row className="mb-4">
+                <Col sm='4'>
+                  <Label>Division: </Label>
+                </Col>
+                <Col sm='4'>
+                  <Select
+                    name='division'
+                    options={props.divisionOptions}
+                    placeholder='Division'
+                    onChange={props.onDivisionSelect}
+                  />
+                </Col>
+              </Row>
+              <Row className="mb-4">
+                <Col sm='4'>
+                  <Label>User Type: </Label>
+                </Col>
+                <Col sm='4'>
+                  <Select
+                    name='userType'
+                    options={props.userTypeOptions}
+                    placeholder='User Type'
+                    onChange={props.onUserTypeSelect}
+                  />
+                </Col>
+              </Row>
+              <Row className="mb-4">
+                <Col sm='4'>
+                  <Label>Name: </Label>
+                </Col>
+                <Col sm='4'>
+                  <Input name='name' type='text' />
+                </Col>
+              </Row>
+              <Row className="mb-4">
+                <Col sm='4'>
+                  <Label>Registration Number: </Label>
+                </Col>
+                <Col sm='4'>
+                  <Input name='regNo' type='text' />
+                </Col>
+              </Row>
+              <Row className="mb-4">
+                <Col sm='4'>
+                  <Label>Parent Mobile Number: </Label>
+                </Col>
+                <Col sm='4'>
+                  <Input name='parentMobile' type='number' />
+                </Col>
+              </Row>
+              <Row className="mb-4">
+                <Col sm='4'>
+                  <Label>Roll Number: </Label>
+                </Col>
+                <Col sm='4'>
+                  <Input name='rollNumber' type='number' />
+                </Col>
+              </Row>
+              <Row className="mb-4">
+                <Col sm='4'>
+                  <Button color="success">Submit</Button>
+                </Col>
+              </Row>
             </FormGroup>
-          </Col>
-          <Col md={6}>
-            <FormGroup>
-              <Label for="mobileNumber">Mobile Number</Label>
-              <Input type="text" name="mobileNumber" id="mobileNumber" placeholder="password placeholder" />
-            </FormGroup>
-          </Col>
-        </Row>
-        </Form>
-      </div>
-    );
-  }
+          </Form>
+        </CardBody>
+      </Card>
+    </div>
+  )
 }
 export default UpdateStudent
