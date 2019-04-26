@@ -36,7 +36,7 @@ class V1::SchoolsController < ApplicationController
     params.permit(:name, :address, :contact_number)
   end
 
-  def set_user
+  def set_school
     @school = School.find(params[:id])
   end
 end
