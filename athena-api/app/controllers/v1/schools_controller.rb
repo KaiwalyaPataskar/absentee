@@ -41,7 +41,6 @@ class V1::SchoolsController < ApplicationController
   	@divisions = Division.where(school_id: params[:id]).select(:id, :name)
   	@classes = ClassInfo.where(school_id: params[:id]).select(:id, :name)
   	response = { divisions: @divisions, classes: @classes }
-  	return json_response(nil, :not_found) unless @divisions.present? && @classes.present?
   	json_response(response, :fetched)
   end
 
