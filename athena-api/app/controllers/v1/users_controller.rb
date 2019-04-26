@@ -3,7 +3,7 @@ class V1::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
   
   def index
-    @users = User.all
+    @users = User.where(school_id: params[:school_id])
     json_response(@users)
   end
 
@@ -30,22 +30,14 @@ class V1::UsersController < ApplicationController
     json_response(@user, :destroyed)
   end
 
-  def import
-    unless params[:file].nil?
-      result = StudentUploadService.new(file: params[:file], school_id: School.first).upload_records
-      response = { path: v1_users_path(params[:school_id]), notice: result[:value] }
-      json_response(response, :created)
-    end
-  end
-
   private
 
   def user_params
     # whitelist params
-    params.permit(:name, :registration_number, :mobile_number, :user_type, :file)
+    params.permit(:name, :registration_number, :mobile_number, :user_type, :school_id, :file)
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.where(id: params[:id], school_id: params[:school_id]).first
   end
 end

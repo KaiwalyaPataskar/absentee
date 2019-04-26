@@ -5,22 +5,24 @@ class ImportCsvWorkerJob < ApplicationJob
     message = nil
     header = []
     is_valid = true
-
-    CSV.open("#{Rails.root}/public/#{@terminal.name}-invalid_records.csv","w") do |csv|
-      CSV.parse(menu_items.to_s,headers: true) do |row|
+    @school = School.find(1)
+    CSV.open("#{Rails.root}/public/#{@school}-invalid_records.csv","w") do |csv|
+      CSV.parse(students.to_s,headers: true) do |row|
     
-        next if row.to_a == ['registration_number', 'class_name', 'division_name', 'roll_number', 'student_name', 'mobile_number']
+        next if row.to_a == ['Registration Number', 'Class', 'Division', 'Roll Number', 'Student Name', 'Mobile Number']
        
-        @student = @school.students.find_or_initialize_by(name: row['name'], registration_number: row['registration_number'], mobile_number: row['mobile_number'], type: 'Student', user_info_attributes: {class: })
+        @student = @school.users.find_or_initialize_by(name: row['Student Name'], registration_number: row['Registration Number'], mobile_number: row['Mobile Number'], user_type: 'Student')
 
-        if !@menu_item.save
+        if !@student.save
           is_valid = false
           @student.errors.to_a.each do |error|
             row << error
           end
           csv << row
         else
-          @user_info = UserInfo.create(school_id: school_id, class_info_id: row['class'], division_id: row['division'], user_id: @student)
+          class_info = ClassInfo.find_or_create_by!(name: row['Class'])
+          division = Division.find_or_create_by!(name: row['Division'])
+          @user_info = UserInfo.create!(school_id: school_id, class_info_id: class_info.id, division_id: division.id, user_id: @student.id, roll_number: row['Roll Number'])
         end
       end
     end

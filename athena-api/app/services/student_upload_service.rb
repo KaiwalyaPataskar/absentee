@@ -1,5 +1,6 @@
-class StudentUploadService
+require 'csv'
 
+class StudentUploadService
   def initialize(params)
     @file = params[:file]
     @school_id = params[:school_id]
@@ -10,7 +11,7 @@ class StudentUploadService
     if ['text/csv', 'application/octet-stream', 'application/vnd.ms-excel'].include?(@file.content_type)
       csv_file = File.open(@file.path)
       students = CSV.parse( csv_file, headers: true )
-      if students.headers == ['registration_number', 'class_name', 'division_name', 'roll_number', 'student_name', 'mobile_number']
+      if students.headers == ['Registration Number', 'Class', 'Division', 'Roll Number', 'Student Name', 'Mobile Number']
         result = ImportCsvWorkerJob.perform_now(@school_id, students)
         message_hash[:value] = result
       else
