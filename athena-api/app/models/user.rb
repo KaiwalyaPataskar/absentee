@@ -4,4 +4,5 @@ class User < ApplicationRecord
 
   validates :registration_number, uniqueness: true
   validates :role, acceptance: { accept: ['Admin', 'Teacher', 'Student'] }
+  belongs_to :school
 end

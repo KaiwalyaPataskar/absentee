@@ -30,11 +30,19 @@ class V1::UsersController < ApplicationController
     json_response(@user, :destroyed)
   end
 
+  def import
+    unless params[:file].nil?
+      result = StudentUploadService.new(file: params[:file], school_id: School.first).upload_records
+      response = { path: v1_users_path(params[:school_id]), notice: result[:value] }
+      json_response(response, :created)
+    end
+  end
+
   private
 
   def user_params
     # whitelist params
-    params.permit(:name, :registration_number, :mobile_number, :user_type)
+    params.permit(:name, :registration_number, :mobile_number, :user_type, :file)
   end
 
   def set_user
