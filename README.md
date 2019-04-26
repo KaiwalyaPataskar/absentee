@@ -1,58 +1,68 @@
-# Absentee
-A lightweight attendance management system for Rural Schools in India.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Statistics
-Child trafficking is the third largest profitable industry of the world and India seems to be in the thick of it. India is not only the source, but a destination and transit point for this heinous crime.
+## Available Scripts
 
-180 children go missing on an average every day. While the number of children who go missing remains alarming, the number of untraced children keep piling year on year, says CRY Report
+In the project directory, you can run:
 
-Maharashtra and Delhi have the maximum number of untraced children. According to a recent RTI reply from the Delhi Police, 22 children go missing in Delhi every day.
+### `npm start`
 
-Trafficking in children is on rise, and nearly 60% of the victims of trafficking are below 18 years of age.
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-## The Incident
-A girl in 6th/8th std was abducted from a school I know. In the eveninga after school hours, parents came inquiring at school why she dint return home; only to find that she never went to school that day. No body ever knew the whole story except that she was found raped and dead someplace in Utter Pradesh.
+### `npm test`
 
-I since then learnt that maximum child-abduction happens during kids way to school because of the long hours that usually takes to realise the situation.
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-A simple alert to her parents saying that she’ve not reached the school, cud have saved that girl’s life.
+### `npm run build`
 
-Such alert systems are already implemented in big and small schools mostly in all cities.
-Although, in schools at remote places, small towns and villages, this facility have still not reached.
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Besides this extreme case, there are situations like kids bunking the school (of course without parents their parents know) and get themselves involved gambling and other wrong doings and get mixed with wrong sort of crowd.
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-I’ve interview parents who’ve beaten up their kids for getting involved in gambling instead of going to school. These parents had pleaded school authorities to inform them if their kid bunks the school. But that is no reliable way to address this issue in such places.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Proposed Features & Technical Requirements:
-* Classroom & Student updation via file upload (once a year). 
-* Every year the class progresses but students could be demoted / promoted. 
-* Students may be added / removed. 
-* SMS sent only when the child is marked absent 
-* Raise an SMS alert to an admin if the absence SMS’s aren’t sent within 2 hours after school started.
-* High Latency and low bandwidth solution.
-* Light-weight on browser / device with off-line sync capabilities.
-* SMS provider integration
+### `npm run eject`
 
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-## HACKATHON RULES 
-* Max Team size: 5
-* Each team will be provided with 10 free SMS for testing their system via TextLocal (or we may look up another provider for free access) In some cases, we may help you out with paid TextLocal account for SMS testing.
-* Sai, Neha (basically UX/UI)  will not be part of any team but you can run your ideas by them. 
-* UX/UI is not as important as functionality. Winning team will get special attention (and rework) for the UX / UI from Sai & Neha
-* You can plan your ideas, story, wireframes, build your assets (images, sketches etc.) but NO code until the hackathon starts. 
-* Choose any language or framework 
-* Deployment on AWS or Heroku
-* Team will commit code to github.com/joshsoftware/attendance with the branch that is the teams name! “master” will be later merged with the winning team code! 
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Be honest and have fun! 
-* No writing code before the contest begins! 
-* We shall be monitoring the frequency of commits to eliminate cheaters (who will be dealt with severely)
-* Do NOT merge another teams' code for your development! :D 
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-## Winners
-+ You will get to go to Nagpur to install this setup for a school and meet the teachers.
-+ Travel and Stay will be taken care of by Josh! 
-+ Amazon Gift Voucher of ₹ 3,000 for each participant of the team. 
-+ We may present this to DigitalSeva (Government of India, who is our customer, for those who didn’t know) and get this propagated to all Rural schools in India! 
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `npm run build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
