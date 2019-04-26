@@ -6,18 +6,19 @@ class V1::DivisionsController < ApplicationController
     json_response(@division)
   end
 
-  # POST v1/
   def create
-    @division = Division.create!(division_params)
-    json_response(@division, :created)
+    unless check_if_division_present.present?
+      @division = Division.create!(division_params)
+      json_response(@division, :created)
+    else
+      return json_response(set_division, "Division already exists in the given class")
+    end
   end
 
-  # GET v1/schools/:id
   def show
     json_response(@division)
   end
 
-  # PUT v1/schools/:id
   def update
     @division.update(division_params)
     json_response(@division, :updated)
@@ -37,6 +38,10 @@ class V1::DivisionsController < ApplicationController
   end
 
   def set_division
-    @division = Division.where(id: params[:id], class_id: params[:class_id])
+    @division = Division.where(id: params[:id], class_id: params[:class_id], school_id: params[:school_id])
+  end
+
+  def check_if_division_present
+    Division.where(class_id: params[:class_id], name: params[:name], school_id: params[:school_id]).first
   end
 end
