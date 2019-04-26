@@ -26,6 +26,20 @@ module AthenaApi
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+    
+    #autoloads lib folder during production
+    config.eager_load_paths << Rails.root.join('services')
+
+    #autoloads lib folder during development
+    config.autoload_paths << Rails.root.join('services')
+    # [...]
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :options, :put, :delete]
+      end
+    end
 
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.

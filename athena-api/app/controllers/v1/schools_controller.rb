@@ -29,6 +29,27 @@ class V1::SchoolsController < ApplicationController
     json_response(@school, :destroyed)
   end
 
+  def import
+    unless params[:file].nil?
+      result = StudentUploadService.new(file: params[:file], school_id: School.first).upload_records
+      response = { path: v1_school_users_path(params[:id]), notice: result[:value] }
+      json_response(response, :created)
+    end
+  end
+
+  def get_data
+  	@divisions = Division.where(school_id: params[:id]).select(:id, :name)
+  	@classes = ClassInfo.where(school_id: params[:id]).select(:id, :name)
+  	response = { divisions: @divisions, classes: @classes }
+  	json_response(response, :created)
+  end
+
+  def get_students
+  	students = User.where(school_id: params[:id])
+  	students = students.joins(:user_info).where("user_infos.division_id": params[:division_id], "user_infos.class_info_id": params[:class_id]).select("users.name, user_infos.roll_number")
+  	json_response(students, :created)
+  end
+
   private
 
   def school_params
