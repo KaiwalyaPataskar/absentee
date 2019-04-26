@@ -37,6 +37,13 @@ class V1::SchoolsController < ApplicationController
     end
   end
 
+  def get_data
+  	@divisions = Division.where(school_id: params[:id]).select(:id, :name)
+  	@classes = ClassInfo.where(school_id: params[:id]).select(:id, :name)
+  	response = { divisions: @divisions, classes: @classes }
+  	json_response(response, :created)
+  end
+
   private
 
   def school_params
