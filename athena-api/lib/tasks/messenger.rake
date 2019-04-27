@@ -7,10 +7,9 @@ namespace :messenger do
       user = User.find(id: attendace.user_id)
       params = {
         message: "Student Absent- #{user.name}",
-        sender: "School",
         number: user.number
       }
-       #SmsMessenger.new(params).send
+       SmsMessenger.new(params).send
    end
    p params
   end

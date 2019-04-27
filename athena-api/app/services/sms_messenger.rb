@@ -13,7 +13,7 @@ class SmsMessenger
   def send
     res = Net::HTTP.post_form(@uri, 'apikey' => @api_key,
        'message' => @params[:message],
-       'sender' => "Application",
+       'sender' => "TXTLCL",
        'numbers' => [@params[:numbers]])
     response = JSON.parse(res.body)
   end
