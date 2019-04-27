@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, CardHeader, CardBody, Form, FormGroup, Row, Col, Input, Label, Button } from 'reactstrap';
-import Absentee from '../containers/absentee-container';
 import Select from 'react-select';
 
 const AbsenteeForm = (props) => {
@@ -48,13 +47,14 @@ const AbsenteeForm = (props) => {
                     isMulti
                     options={props.studentOptions}
                     isDisabled={!props.isEnable}
+                    onChange={props.handleChange}
                   />
                 </Col>
 
               </Row>
               <Row>
                 <Col sm='12'>
-                  <Button>Mark Absent</Button>
+                  <Button onClick={props.markAbsent}>Mark Absent</Button>
                 </Col>
               </Row>
             </FormGroup>
