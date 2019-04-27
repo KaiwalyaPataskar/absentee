@@ -7,7 +7,7 @@ class RootLayout extends Component {
   render(){
     return(
       <Switch>
-         <Route path="/" component={AbsenteeForm} />
+         <Route exact path="/" component={AbsenteeForm} />
         <Route path ='/updateStudent' component={UpdateStudentContainer}/>
       </Switch>
     );

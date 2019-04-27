@@ -3,7 +3,9 @@ function Request() {
 }
 
 var _request = function (url, param) {
-  return fetch(url, param).then(response => response.json())
+  return fetch(url, param).then(response => {
+    return response.json();
+  })
 };
 
 var _doGet = function (url, data, authHeader = '') {
@@ -11,11 +13,11 @@ var _doGet = function (url, data, authHeader = '') {
   return _request(url, param);
 };
 
-var _doPost = function (url, data = {'data': '123'}, authHeader) {
+var _doPost = function (url, data, authHeader) {
   var param = {
-    data: JSON.stringify(data),
+    body: JSON.stringify(data),
     method: "POST",
-    headers: {contentType: 'application/json'}
+    headers: {'Content-Type': 'application/json'}
   };
   return _request(url, param);
 };
@@ -32,25 +34,27 @@ var _doPut = function (url, data, authData) {
 
 var _doDelete = function (url, data) {
   var param = {
-    data: JSON.stringify(data),
+    data: data,
     url: url,
     method: "DELETE",
   };
   return _request(param);
 };
 
-var _doUpload = function (url, data) {
+var _doUpload = function (url, data, authHeader) {
+  var formdata = new FormData();
+  formdata.append('file', data.file);
+
   var param = {
-    data: data,
-    url: url,
+    body: formdata,
     method: "POST",
-    processData: false,
-    contentType: false,
+    mode: 'no-cors',
+    headers: {"Content-Type": "form-data"}
   };
-  return _request(param);
+  fetch(url, param);
 };
 
-Request.prototype.save = function (url, data, authData) {
+Request.prototype.save = function (url, data, authData={}) {
   return _doPost(url, data, authData);
 };
 
