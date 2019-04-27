@@ -33,7 +33,7 @@ class UpdateStudentContainer extends Component {
 
   getDivisions = (id ='') => {
     let classId = id || this.state.class.value
-    Request.fetch(`http://192.168.1.234:3000/v1/schools/2/classes/${classId}/divisions`).then(response => {
+    Request.fetch(`https://upasthit.herokuapp.com/v1/schools/2/classes/${classId}/divisions`).then(response => {
       this.setState({
         divisionOptions: response.value
       })
@@ -41,7 +41,7 @@ class UpdateStudentContainer extends Component {
   }
 
   getClasses = () => {
-    Request.fetch('http://192.168.1.234:3000/v1/schools/2/classes').then(response => {
+    Request.fetch('https://upasthit.herokuapp.com/v1/schools/1/classes').then(response => {
       this.setState({
         classOptions: response.value
       })
@@ -74,7 +74,7 @@ class UpdateStudentContainer extends Component {
       'division_id': studentInfo.division_id && this.state.division.value,
       'user_type': 'student'
     });
-    let url = 'http://192.168.1.234:3000/v1/schools/2/users';
+    let url = 'https://upasthit.herokuapp.com/v1/schools/2/users';
     if (this.state.isEdit) {
       Request.update(`${url}/${studentInfo.id}`, param).then((response) => {
         if(response.status !== 'updated'){

@@ -47,7 +47,7 @@ class Absentee extends React.Component {
   }
 
   getDivisions = () => {
-    Request.fetch(`http://192.168.1.234:3000/v1/schools/1/classes/${this.state.class}/divisions`).then(response => {
+    Request.fetch(`https://upasthit.herokuapp.com/v1/schools/1/classes/${this.state.class}/divisions`).then(response => {
       this.setState({
         divisionOptions: response.value
       })
@@ -55,7 +55,7 @@ class Absentee extends React.Component {
   }
 
   getClasses = () => {
-    Request.fetch('http://192.168.1.234:3000/v1/schools/1/classes').then(response => {
+    Request.fetch('https://upasthit.herokuapp.com/v1/schools/1/classes').then(response => {
       this.setState({
         classOptions: response.value
       })
@@ -76,7 +76,7 @@ class Absentee extends React.Component {
 
   markAbsent = () => {
     let absentRollNos = this.state.absentStudents.map((no) => (no.value));
-    Request.save('http://192.168.1.234:3000/v1/student_attendance',{
+    Request.save('https://upasthit.herokuapp.com/v1/student_attendace',{
       'present': false,
       'user_ids': absentRollNos
     }).then((response) => {
@@ -94,7 +94,7 @@ class Absentee extends React.Component {
     })
   }
   getStudents = () => {
-    Request.save('http://192.168.1.234:3000/v1/schools/2/get_students', {
+    Request.save('https://upasthit.herokuapp.com/v1/schools/2/get_students', {
       "class_id": this.state.class,
       'division_id': this.state.division
     }).then((response) => {

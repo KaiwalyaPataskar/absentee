@@ -25,7 +25,7 @@ class StudentListingContainer extends React.Component {
   }
 
   getStudents = () => {
-    Request.fetch('http://192.168.1.234:3000/v1/schools/2/users').then(response => {
+    Request.fetch('https://upasthit.herokuapp.com/v1/schools/2/users').then(response => {
       this.setState({
         studentListing: response.value
       })
