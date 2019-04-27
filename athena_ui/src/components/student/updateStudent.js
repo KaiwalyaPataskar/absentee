@@ -39,23 +39,10 @@ const UpdateStudent = (props) => {
               </Row>
               <Row className="mb-4">
                 <Col sm='4'>
-                  <Label>User Type: </Label>
-                </Col>
-                <Col sm='4'>
-                  <Select
-                    name='userType'
-                    options={props.userTypeOptions}
-                    placeholder='User Type'
-                    onChange={props.onUserTypeSelect}
-                  />
-                </Col>
-              </Row>
-              <Row className="mb-4">
-                <Col sm='4'>
                   <Label>Name: </Label>
                 </Col>
                 <Col sm='4'>
-                  <Input name='name' type='text' />
+                  <Input name='name' type='text' onChange={props.onHandleChange}/>
                 </Col>
               </Row>
               <Row className="mb-4">
@@ -63,7 +50,7 @@ const UpdateStudent = (props) => {
                   <Label>Registration Number: </Label>
                 </Col>
                 <Col sm='4'>
-                  <Input name='regNo' type='text' />
+                  <Input name='registration_number' type='text' onChange={props.onHandleChange} />
                 </Col>
               </Row>
               <Row className="mb-4">
@@ -71,7 +58,7 @@ const UpdateStudent = (props) => {
                   <Label>Parent Mobile Number: </Label>
                 </Col>
                 <Col sm='4'>
-                  <Input name='parentMobile' type='number' />
+                  <Input name='mobile_number' type='number' onChange={props.onHandleChange}/>
                 </Col>
               </Row>
               <Row className="mb-4">
@@ -79,12 +66,12 @@ const UpdateStudent = (props) => {
                   <Label>Roll Number: </Label>
                 </Col>
                 <Col sm='4'>
-                  <Input name='rollNumber' type='number' />
+                  <Input name='roll_number' type='number' onChange={props.onHandleChange}/>
                 </Col>
               </Row>
               <Row className="mb-4">
                 <Col sm='4'>
-                  <Button color="success">Submit</Button>
+                  <Button color="success" onClick={props.saveInfo}>Submit</Button>
                 </Col>
               </Row>
             </FormGroup>
