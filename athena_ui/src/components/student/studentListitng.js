@@ -1,7 +1,8 @@
 import React from 'react';
 import { Card, CardHeader, CardBody, Button, Table } from 'reactstrap';
+import {Link} from 'react-router-dom';
 
-const Studentlisting = (props) => {
+const StudentListing = (props) => {
   
   return (
     <div>
@@ -15,10 +16,10 @@ const Studentlisting = (props) => {
                 <th sm='4'>Registration No</th>
                 {/* <th sm='4'>Class</th>
                 <th sm='4'>Division</th> */}
-                {/* <th sm='4'>Roll No.</th> */}
+                <th sm='4'>Roll No.</th>
                 <th sm='4'>Student Name</th>
-                <th sm='4'>Contact No.</th>
-                {/* <th sm='4'>Action</th> */}
+                <th sm='4'>Emergency No.</th>
+                <th sm='4'>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -28,10 +29,14 @@ const Studentlisting = (props) => {
                   <td>{item.registration_number}</td>
                   {/* <td>{item.class}</td> */}
                   {/* <td>{item.division}</td> */}
-                  {/* <td>{item.rollNo}</td> */}
+                  <td>{item.roll_number}</td>
                   <td>{item.name}</td>
                   <td>{item.mobile_number}</td>
-                  {/* <td>{item.action}</td> */}
+                  <td><Link to={{
+                        pathname: '/updateStudent',
+                        state: { student: item }
+                      }}> Edit </Link>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -41,4 +46,4 @@ const Studentlisting = (props) => {
     </div>
   )
 }
-export default Studentlisting
+export default StudentListing

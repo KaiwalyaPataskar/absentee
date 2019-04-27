@@ -76,7 +76,7 @@ class Absentee extends React.Component {
 
   markAbsent = () => {
     let absentRollNos = this.state.absentStudents.map((no) => (no.value));
-    Request.save('http://192.168.1.234:3000/v1/student_attendace',{
+    Request.save('http://192.168.1.234:3000/v1/student_attendance',{
       'present': false,
       'user_ids': absentRollNos
     }).then((response) => {

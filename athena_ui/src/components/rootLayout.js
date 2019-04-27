@@ -15,7 +15,7 @@ class RootLayout extends Component {
         <Route path='/updateStudent' component={UpdateStudentContainer} />
         <Route path='/updateSchool' component={UpdateSchoolContainer} />
         <Route path='/updateClass' component={UpdateClassContainer} />
-        <Route path='/studentListing' component={StudentListingContainer} />
+        <Route path='/students' component={StudentListingContainer} />
         <Route path='/classListing' component={ClassListingContainer} />
       </Switch>
     );
