@@ -45,8 +45,10 @@ class V1::SchoolsController < ApplicationController
   end
 
   def get_students
-  	students = User.where(school_id: params[:id])
-  	students = students.joins(:user_info).where("user_infos.division_id": params[:division_id], "user_infos.class_info_id": params[:class_id]).select("users.name, user_infos.roll_number")
+    students = User.where(school_id: params[:id])
+    students = students.joins(:user_info).where("user_infos.division_id": params[:division_id],
+                                               "user_infos.class_info_id": params[:class_id])
+                                               .select("users.name, user_infos.roll_number", "users.id")
   	return json_response(nil, :not_found) unless students.present?
   	json_response(students, :fetched)
   end
