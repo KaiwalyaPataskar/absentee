@@ -22,12 +22,11 @@ var _doPost = function (url, data, authHeader) {
 
 var _doPut = function (url, data, authData) {
   var param = {
-    data: JSON.stringify(data),
-    url: url,
+    body: JSON.stringify(data),
     method: "PUT",
-    headers: authData
+    headers: {'Content-Type': 'application/json'}
   };
-  return _request(param);
+  return _request(url, param);
 };
 
 var _doDelete = function (url, data) {

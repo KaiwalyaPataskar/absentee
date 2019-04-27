@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import UpdateStudent from '../../components/student/updateStudent';
 import Request from '../../utils/request-provider';
-import _ from 'lodash';
+import _, { find } from 'lodash';
 
 class UpdateStudentContainer extends Component {
   constructor(props) {
@@ -12,16 +12,28 @@ class UpdateStudentContainer extends Component {
       divisionOptions: [],
       classOptions: [],
       studentInfo: {},
+      studentEditInfo: {},
+      isEdit: false,
+      isError: false,
+      errorMsg: ''
     }
   }
 
 
   componentDidMount = () => {
+    if (this.props.location && this.props.location.state) {
+      this.setState({
+        studentInfo: this.props.location.state.student,
+        isEdit: true
+      })
+      this.getDivisions(this.props.location.state.student.class_info_id);
+    }
     this.getClasses();
   }
 
-  getDivisions = () => {
-    Request.fetch(`http://192.168.1.234:3000/v1/schools/1/classes/${this.state.class}/divisions`).then(response => {
+  getDivisions = (id ='') => {
+    let classId = id || this.state.class.value
+    Request.fetch(`http://192.168.1.234:3000/v1/schools/2/classes/${classId}/divisions`).then(response => {
       this.setState({
         divisionOptions: response.value
       })
@@ -29,7 +41,7 @@ class UpdateStudentContainer extends Component {
   }
 
   getClasses = () => {
-    Request.fetch('http://192.168.1.234:3000/v1/schools/1/classes').then(response => {
+    Request.fetch('http://192.168.1.234:3000/v1/schools/2/classes').then(response => {
       this.setState({
         classOptions: response.value
       })
@@ -38,13 +50,13 @@ class UpdateStudentContainer extends Component {
 
   onDivisionSelect = (event) => {
     this.setState({
-      division: event.value
+      division: event
     })
   }
 
   onClassSelect = (event) => {
     this.setState({
-      class: event.value
+      class: event
     }, this.getDivisions)
   }
 
@@ -58,16 +70,44 @@ class UpdateStudentContainer extends Component {
   saveInfo = () => {
     let { studentInfo } = this.state;
     let param = _.extend(studentInfo, {
-      'class_info_id': this.state.class,
-      'division_id': this.state.division
-    })
-    debugger
-    Request.save('http://192.168.1.234:3000/v1/schools/2/users', param).then((response) => {
-      this.setState({
-        studentInfo: response.value
+      'class_info_id': studentInfo.class_info_id || this.state.class.value,
+      'division_id': studentInfo.division_id && this.state.division.value,
+      'user_type': 'student'
+    });
+    let url = 'http://192.168.1.234:3000/v1/schools/2/users';
+    if (this.state.isEdit) {
+      Request.update(`${url}/${studentInfo.id}`, param).then((response) => {
+        if(response.status !== 'updated'){
+          this.setState({
+            errorMsg: response.value.message
+          }, () => {
+            setTimeout(() => {
+              this.setState({
+                errorMsg: false
+              })
+            }, 3000)
+          })
+        } else {
+          this.props.history.push('/students');
+        }
       })
-    })
-
+    } else {
+      Request.save(url, param).then((response) => {
+        if(response.status !== 'created'){
+          this.setState({
+            errorMsg: response.value.message
+          }, () => {
+            setTimeout(() => {
+              this.setState({
+                errorMsg: false
+              })
+            }, 3000)
+          })
+        } else {
+          this.props.history.push('/students');
+        }
+      })
+    }
   }
 
   render() {
@@ -77,8 +117,13 @@ class UpdateStudentContainer extends Component {
         onDivisionSelect={this.onDivisionSelect}
         saveInfo={this.saveInfo}
         onHandleChange={this.onHandleChange}
-        classOptions={this.state.classOptions.map((term => ({ 'label': term.name, 'value': term.id })))}
-        divisionOptions={this.state.divisionOptions.map((division => ({ 'label': division.name, 'value': division.id })))}
+        studentInfo={this.state.studentInfo}
+        isEdit={this.state.isEdit}
+        classOptions={this.state.classOptions && this.state.classOptions.map((term => ({ 'label': term.name, 'value': term.id })))}
+        divisionOptions={this.state.divisionOptions && this.state.divisionOptions.map((division => ({ 'label': division.name, 'value': division.id })))}
+        division={this.state.division}
+        state={this.state.class}
+        errorMsg={this.state.errorMsg}
       />
     );
   }

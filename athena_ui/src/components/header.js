@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Nav, Navbar, NavItem, NavLink } from 'reactstrap';
+import { Button, Nav, Navbar, NavItem, NavLink, NavbarBrand } from 'reactstrap';
 import InventoryModal from '../components/inventory';
 import Request from '../utils/request-provider';
 
@@ -36,12 +36,13 @@ class Header extends React.Component {
     return (
       <>
         <Navbar color="light" light expand="md">
-          <Nav navbar>
+        <NavbarBrand href="/">UPASTHIT</NavbarBrand>
+          <Nav navbar className='ml-auto'>
             <NavItem>
               <NavLink href="/">Absentee</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/studentListing">Students</NavLink>
+              <NavLink href="/students">Students</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="/updateSchool">Schools</NavLink>

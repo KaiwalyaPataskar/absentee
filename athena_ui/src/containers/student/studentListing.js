@@ -17,6 +17,12 @@ class StudentListingContainer extends React.Component {
   }
 
 
+  editStudent = (student) => {
+    this.props.history.push({
+      pathname:'/updateStudent',
+      state: { student }
+    })
+  }
 
   getStudents = () => {
     Request.fetch('http://192.168.1.234:3000/v1/schools/2/users').then(response => {
@@ -30,6 +36,7 @@ class StudentListingContainer extends React.Component {
     return (
       <StudentListing
         studentListing={this.state.studentListing}
+        editStudent={this.editStudent}
       />
     );
 
