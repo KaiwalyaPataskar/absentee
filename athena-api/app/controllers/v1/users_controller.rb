@@ -4,7 +4,7 @@ class V1::UsersController < ApplicationController
   
   def index
     @users = User.where(school_id: params[:school_id])
-    students = @users.joins(:user_info).select("users.id, users.name, users.registration_number, users.mobile_number, user_infos.roll_number")
+    students = @users.joins(:user_info).select("users.id, users.name, users.registration_number, users.mobile_number, user_infos.roll_number, user_infos.division_id, user_infos.class_info_id")
     json_response(students)
   end
 
@@ -19,7 +19,11 @@ class V1::UsersController < ApplicationController
   end
 
   def show
-    json_response(@user)
+    students = @user.user_info.as_json
+    students[:name] = @user.name
+    students[:registration_number] = @user.registration_number
+    students[:mobile_number] = @user.mobile_number
+    json_response(students)
   end
 
   def update
