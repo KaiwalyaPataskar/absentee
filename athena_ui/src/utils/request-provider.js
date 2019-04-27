@@ -13,9 +13,9 @@ var _doGet = function (url, data, authHeader = '') {
 
 var _doPost = function (url, data = {'data': '123'}, authHeader) {
   var param = {
-    data: JSON.stringify(data),
+    body: JSON.stringify(data),
     method: "POST",
-    headers: {contentType: 'application/json'}
+    headers: {'Content-Type': 'application/json'}
   };
   return _request(url, param);
 };

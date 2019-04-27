@@ -34,9 +34,6 @@ class Absentee extends React.Component {
     this.setState({
       division: event.value
     })
-    // Request.fetch().then((response) => {
-    //   debugger
-    // })
   }
 
   onClassSelect = (event) => {

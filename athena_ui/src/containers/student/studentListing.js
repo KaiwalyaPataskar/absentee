@@ -1,30 +1,36 @@
 import React from 'react';
 import StudentListing from '../../components/student/studentListitng';
+import Request from '../../utils/request-provider'
+
 
 class StudentListingContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      division: '',
-      class: '',
-      absentStudents: [],
+      studentListing: [],
       isSearch: false
     }
   }
-  onDivisionSelect = (event) => {
-    this.setState({
-      division: event.value
+
+  componentDidMount = () => {
+    this.getStudents();
+  }
+
+
+
+  getStudents = () => {
+    Request.fetch('http://192.168.1.234:3000/v1/schools/2/users').then(response => {
+      this.setState({
+        studentListing: response.value
+      })
     })
   }
 
-  onClassSelect = (event) => {
-    this.setState({
-      class: event.value
-    })
-  }
   render() {
     return (
-      <StudentListing/>
+      <StudentListing
+        studentListing={this.state.studentListing}
+      />
     );
 
   }

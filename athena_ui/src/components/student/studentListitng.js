@@ -13,27 +13,27 @@ const Studentlisting = (props) => {
               <tr className="mb-4">
                 <th>#</th>
                 <th sm='4'>Registration No</th>
-                <th sm='4'>Class</th>
-                <th sm='4'>Division</th>
-                <th sm='4'>Roll No.</th>
+                {/* <th sm='4'>Class</th>
+                <th sm='4'>Division</th> */}
+                {/* <th sm='4'>Roll No.</th> */}
                 <th sm='4'>Student Name</th>
                 <th sm='4'>Contact No.</th>
-                <th sm='4'>Action</th>
+                {/* <th sm='4'>Action</th> */}
               </tr>
             </thead>
             <tbody>
-              {/* {props.data.map((item, index) => (
+              {props.studentListing.map((item, index) => (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
-                  <td>{item.registrationNo}</td>
-                  <td>{item.class}</td>
-                  <td>{item.division}</td>
-                  <td>{item.rollNo}</td>
-                  <td>{item.studentName}</td>
-                  <td>{item.contactNo}</td>
-                  <td>{item.action}</td>
+                  <td>{item.registration_number}</td>
+                  {/* <td>{item.class}</td> */}
+                  {/* <td>{item.division}</td> */}
+                  {/* <td>{item.rollNo}</td> */}
+                  <td>{item.name}</td>
+                  <td>{item.mobile_number}</td>
+                  {/* <td>{item.action}</td> */}
                 </tr>
-              ))} */}
+              ))}
             </tbody>
           </Table>
         </CardBody>
