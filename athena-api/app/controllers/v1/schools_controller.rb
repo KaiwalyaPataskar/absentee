@@ -38,10 +38,10 @@ class V1::SchoolsController < ApplicationController
   end
 
   def get_data
-  	@divisions = Division.where(school_id: params[:id]).select(:id, :name)
-  	@classes = ClassInfo.where(school_id: params[:id]).select(:id, :name)
-  	response = { divisions: @divisions, classes: @classes }
-  	json_response(response, :fetched)
+    @divisions = Division.where(school_id: params[:id]).select(:id, :name)
+    @classes = ClassInfo.where(school_id: params[:id]).select(:id, :name)
+    response = { divisions: @divisions, classes: @classes }
+    json_response(response, :fetched)
   end
 
   def get_students
@@ -49,8 +49,8 @@ class V1::SchoolsController < ApplicationController
     students = students.joins(:user_info).where("user_infos.division_id": params[:division_id],
                                                "user_infos.class_info_id": params[:class_id])
                                                .select("users.name, user_infos.roll_number", "users.id")
-  	return json_response(nil, :not_found) unless students.present?
-  	json_response(students, :fetched)
+    return json_response(nil, :not_found) unless students.present?
+    json_response(students, :fetched)
   end
 
   private
