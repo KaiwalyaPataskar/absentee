@@ -3,6 +3,7 @@ function Request() {
 }
 
 var _request = function (url, param) {
+  debugger
   return fetch(url, param).then(response => response.json())
 };
 
@@ -12,10 +13,11 @@ var _doGet = function (url, data, authHeader = '') {
 };
 
 var _doPost = function (url, data = {'data': '123'}, authHeader) {
+  debugger
   var param = {
-    data: JSON.stringify(data),
+    body: JSON.stringify(data),
     method: "POST",
-    headers: {contentType: 'application/json'}
+    headers: {'Content-Type': 'application/json'}
   };
   return _request(url, param);
 };
