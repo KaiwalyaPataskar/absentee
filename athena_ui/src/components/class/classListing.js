@@ -18,14 +18,6 @@ const Classlisting = (props) => {
               </tr>
             </thead>
             <tbody>
-              {/* {props.data.map((item, index) => (
-                <tr key={index}>
-                  <th scope="row">{index + 1}</th>
-                  <td>{item.registrationNo}</td>
-                  <td>{item.class}</td>
-                  <td>{item.action}</td>
-                </tr>
-              ))} */}
             </tbody>
           </Table>
         </CardBody>
