@@ -6,7 +6,6 @@ class ImportCsvWorkerJob < ApplicationJob
     header = []
     is_valid = true
     @error_count = 0
-    byebug
     @school = School.find(school_id)
     CSV.open("#{Rails.root}/public/#{@school.name}-invalid_records.csv","w") do |csv|
       CSV.parse(students.to_s,headers: true) do |row|
