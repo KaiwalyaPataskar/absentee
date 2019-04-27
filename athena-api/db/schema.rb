@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_26_214208) do
+ActiveRecord::Schema.define(version: 2019_04_27_013917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,25 +38,13 @@ ActiveRecord::Schema.define(version: 2019_04_26_214208) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "student_attendaces", force: :cascade do |t|
+  create_table "student_attendances", force: :cascade do |t|
     t.integer "user_id"
     t.date "date"
     t.string "sms_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "attended"
-  end
-
-  create_table "user_informations", force: :cascade do |t|
-    t.bigint "user_id"
-    t.integer "roll_number"
-    t.bigint "school_id"
-    t.bigint "division_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["division_id"], name: "index_user_informations_on_division_id"
-    t.index ["school_id"], name: "index_user_informations_on_school_id"
-    t.index ["user_id"], name: "index_user_informations_on_user_id"
   end
 
   create_table "user_infos", force: :cascade do |t|
@@ -84,8 +72,5 @@ ActiveRecord::Schema.define(version: 2019_04_26_214208) do
     t.index ["school_id"], name: "index_users_on_school_id"
   end
 
-  add_foreign_key "user_informations", "divisions"
-  add_foreign_key "user_informations", "schools"
-  add_foreign_key "user_informations", "users"
   add_foreign_key "users", "schools"
 end
