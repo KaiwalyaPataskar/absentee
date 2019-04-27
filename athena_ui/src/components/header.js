@@ -26,7 +26,7 @@ class Header extends React.Component {
   }
 
   uploadFile = () => {
-    Request.upload('http://192.168.1.182:3000/v1/schools/1/import', {
+    Request.upload('https://thawing-tor-17765.herokuapp.com/v1/schools/1/import', {
       file: this.state.files
     })
     this.toggleModal();

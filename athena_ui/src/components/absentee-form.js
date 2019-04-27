@@ -45,7 +45,7 @@ const AbsenteeForm = (props) => {
                     name='name'
                     placeholder='Search Name'
                     isMulti
-                    options={props.studentOptions}
+                    options={props.studentOptions || {}}
                     isDisabled={!props.isEnable}
                     onChange={props.handleChange}
                   />
