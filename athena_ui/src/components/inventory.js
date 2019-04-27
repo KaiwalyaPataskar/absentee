@@ -2,14 +2,13 @@ import React from 'react';
 import {  Modal,
   ModalBody,
   ModalFooter,
-  ModalHeader, Card, CardHeader, CardBody, Form, FormGroup, Row, Col, Input, Label, Button } from 'reactstrap';
+  ModalHeader, FormGroup, Col, Input, Label, Button } from 'reactstrap';
 
 const InventoryModal = (props) => {
   return (
     <Modal isOpen={props.isOpen} className={'modal-primary'}>
       <ModalHeader>Upload Files </ModalHeader>
       <ModalBody>
-        {/* <Form multipart> */}
         <FormGroup row>
           <Col md="3">
             <Label htmlFor="text-input">Student Information</Label>
@@ -21,7 +20,6 @@ const InventoryModal = (props) => {
             />
           </Col>
         </FormGroup>
-        {/* </Form> */}
       </ModalBody>
       <ModalFooter>
         <Button color="primary" onClick={props.uploadFile}>Upload</Button>

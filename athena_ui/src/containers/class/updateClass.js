@@ -23,11 +23,7 @@ class UpdateClassContainer extends React.Component {
       class: event.value
     })
   }
-  // uploadFile = (e) =>{
-  //   this.setState({
-  //     file: e.target.files[0]
-  //   })
-  // }
+  
   render() {
     return (
       <UpdateSchool

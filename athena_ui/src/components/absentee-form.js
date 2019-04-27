@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardHeader, CardBody, Form, FormGroup, Row, Col, Input, Label, Button } from 'reactstrap';
+import { Card, CardHeader, CardBody, Form, FormGroup, Row, Col, Label, Button } from 'reactstrap';
 import Select from 'react-select';
 
 const AbsenteeForm = (props) => {
@@ -59,10 +59,6 @@ const AbsenteeForm = (props) => {
               </Row>
             </FormGroup>
           </Form>
-          {/* <CardTitle>Card title</CardTitle>
-            <CardSubtitle>Card subtitle</CardSubtitle>
-            <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText> */}
-
         </CardBody>
       </Card>
     </div>

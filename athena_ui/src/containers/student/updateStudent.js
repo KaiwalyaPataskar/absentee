@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import UpdateStudent from '../../components/student/updateStudent';
 import Request from '../../utils/request-provider';
-import _, { find } from 'lodash';
+import { assign, extend } from 'lodash';
 
 class UpdateStudentContainer extends Component {
   constructor(props) {
@@ -18,7 +18,6 @@ class UpdateStudentContainer extends Component {
       errorMsg: ''
     }
   }
-
 
   componentDidMount = () => {
     if (this.props.location && this.props.location.state) {
@@ -63,13 +62,13 @@ class UpdateStudentContainer extends Component {
   onHandleChange = (event) => {
     const { studentInfo } = this.state;
     this.setState({
-      studentInfo: _.assign({}, studentInfo, { [event.target.name]: event.target.value })
+      studentInfo: assign({}, studentInfo, { [event.target.name]: event.target.value })
     })
   }
 
   saveInfo = () => {
     let { studentInfo } = this.state;
-    let param = _.extend(studentInfo, {
+    let param = extend(studentInfo, {
       'class_info_id': studentInfo.class_info_id || this.state.class.value,
       'division_id': studentInfo.division_id && this.state.division.value,
       'user_type': 'student'
