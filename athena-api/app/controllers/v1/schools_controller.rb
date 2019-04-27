@@ -30,11 +30,18 @@ class V1::SchoolsController < ApplicationController
   end
 
   def import
-    unless params[:file].nil?
-      result = StudentUploadService.new(file: params[:file], school_id: params[:id]).upload_records
-      response = { path: v1_school_users_path(params[:id]), notice: result[:value] }
-      json_response(response, :created)
-    end
+   unless params[:file].nil?
+     result = StudentUploadService.new(file: params[:file], school_id: params[:id]).upload_records
+     byebug
+     response = { path: v1_school_users_path(params[:id]), notice: result[:value] }
+     if ["Some Records are Invalid! Click Invalid Records CSV to download file!", 
+         "Invalid File Type", "Invalid Headers!"].include?response[:notice]
+       school_name = School.find(params[:id]).send(:name)
+       response = { path: "#{Rails.root}/public/#{school_name}-invalid_records.csv" }
+       return json_response(response, :download_error_file)
+     end
+     return json_response(response, :imported)
+   end
   end
 
   def get_data
