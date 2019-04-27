@@ -3,9 +3,7 @@ function Request() {
 }
 
 var _request = function (url, param) {
-  return fetch(url, param).then(response => {
-    return response.json();
-  })
+  return fetch(url, param).then(response => response.json())
 };
 
 var _doGet = function (url, data, authHeader = '') {
