@@ -27,14 +27,9 @@ class V1::UsersController < ApplicationController
   end
 
   def update
-    return json_response([], "User with given id doesn't exist") unless @user
-    unless check_if_user_present.present?
-      @user.update(user_params)
-      @user.create_user_info(user_info_params)
-      json_response(@user, :updated)
-    else
-      return json_response(set_user, "You cannot update the user with same roll_number in given class/division")
-    end
+    @user.update(user_params)
+    @user.user_info.update(user_info_params) if params[:roll_number].present? || params[:class_info_id].present? || params[:division_id].present?
+    json_response(@user, :updated)
   end
 
   def destroy
@@ -50,7 +45,7 @@ class V1::UsersController < ApplicationController
   end
 
   def user_info_params
-    params.permit(:school_id, :class_info_id, :division_id, :roll_number)
+    params.permit(:class_info_id, :division_id, :roll_number)
   end
 
   def set_user
